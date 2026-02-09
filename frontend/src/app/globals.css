@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 15, 26;
+  --background-end-rgb: 13, 21, 32;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+/* Glassmorphic card style */
+.glass-card {
+  @apply bg-navy-700/50 backdrop-blur-xl border border-navy-500/30 rounded-xl;
+}
+
+/* Dashed drop zone */
+.drop-zone {
+  @apply border-2 border-dashed border-navy-500 rounded-xl 
+         hover:border-vibe-green/50 transition-colors duration-300;
+}
+
+/* Terminal styling */
+.terminal {
+  @apply bg-navy-900 rounded-lg border border-navy-600 font-mono text-sm;
+}
+
+.terminal-header {
+  @apply flex items-center gap-2 px-4 py-2 border-b border-navy-600;
+}
+
+.terminal-dot {
+  @apply w-3 h-3 rounded-full;
+}
+
+/* Glow effects */
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-accent-blue hover:bg-blue-600 text-white font-medium 
+         px-6 py-3 rounded-lg transition-all duration-200
+         hover:shadow-lg hover:shadow-blue-500/20;
+}
+
+.btn-vibe {
+  @apply bg-vibe-green text-navy-900 font-bold 
+         px-8 py-4 rounded-lg transition-all duration-200
+         hover:bg-vibe-lime hover:shadow-lg hover:shadow-vibe-green/30;
+}
+
+/* Scan line animation */
+.scan-line::after {
+  content: '';
+  @apply absolute left-0 right-0 h-0.5 bg-vibe-green/50;
+  animation: scan-line 3s linear infinite;
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* Focus ring enhancement */
+input:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: white;
+}
