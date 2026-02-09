@@ -1,1 +1,30 @@
-/frontend/node_modules
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Environment variables
+.env
+backend/.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+backend/.venv/
+*.egg-info/
+
+# Next.js
+.next/
+out/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
