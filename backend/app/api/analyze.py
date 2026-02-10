@@ -163,7 +163,23 @@ async def analyze_vibe(
                 detail="No GitHub token available. Please provide a token or connect your GitHub account.",
             )
 
-        github_service = get_github_service(effective_github_token)
+        try:
+            github_service = get_github_service(effective_github_token)
+        except ValueError as e:
+            error_msg = str(e)
+            if (
+                "Invalid GitHub token" in error_msg
+                or "401" in error_msg
+                or "Bad credentials" in error_msg
+            ):
+                raise HTTPException(
+                    status_code=401,
+                    detail="Your GitHub token has expired or is invalid. Please re-authenticate with GitHub or provide a valid GitHub token.",
+                )
+            raise HTTPException(
+                status_code=400,
+                detail=f"Failed to initialize GitHub service: {error_msg}",
+            )
         gemini_service = get_gemini_service()
 
         # Step 4: Fetch repository file tree

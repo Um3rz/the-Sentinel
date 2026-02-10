@@ -483,21 +483,16 @@ class GitHubService:
         pr.edit(state="closed")
 
 
-# Singleton instance for dependency injection
-_github_service: Optional[GitHubService] = None
-
-
 def get_github_service(token: Optional[str] = None) -> GitHubService:
     """
-    Get or create the GitHubService singleton.
+    Create a new GitHubService instance.
 
     Args:
-        token: Optional GitHub token to override default
+        token: Optional GitHub token to use
 
     Returns:
         GitHubService instance
+
+    Note: Creates a new instance each time to handle different users/tokens.
     """
-    global _github_service
-    if _github_service is None or token:
-        _github_service = GitHubService(token)
-    return _github_service
+    return GitHubService(token)
