@@ -135,7 +135,7 @@ class GeminiService:
 
         # Initialize model instances for different tasks
         self.analysis_model = genai.GenerativeModel(
-            model_name="gemini-3-flash-preview", safety_settings=self.safety_settings
+            model_name="gemini-3-pro-preview", safety_settings=self.safety_settings
         )
 
     def _encode_image(self, image_path: str) -> Dict[str, str]:
