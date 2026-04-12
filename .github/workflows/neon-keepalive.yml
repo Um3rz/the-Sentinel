@@ -1,0 +1,21 @@
+name: Neon DB Keep-Alive
+
+on:
+  schedule:
+    - cron: "0 */2 * * *" # Every 2 hours, 12x/day (UTC)
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping:
+    name: Ping Neon Postgres
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Ping database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "Pinging Neon DB at $(date -u)"
+          psql "$DATABASE_URL" -c "SELECT 1;" --no-password
+          echo "Ping successful ✓"
